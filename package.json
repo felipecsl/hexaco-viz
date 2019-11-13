@@ -1,0 +1,24 @@
+{
+  "name": "hexaco",
+  "version": "1.0.0",
+  "description": "visualization for hexaco personality test results",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "npx npm-force-resolutions"
+  },
+  "keywords": [
+    "personality",
+    "psychology",
+    "visualization"
+  ],
+  "author": "Felipe Lima",
+  "license": "ISC",
+  "dependencies": {
+    "jsonpath": "^1.0.2",
+    "pdf2json": "^1.1.8"
+  },
+  "resolutions": {
+    "lodash": "4.17.15"
+  }
+}
