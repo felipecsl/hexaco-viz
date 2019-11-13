@@ -11,7 +11,10 @@ pdfParser.on("pdfParser_dataReady", pdfData => {
     let score = jsonPath.query(pdfData, `$.formImage.Pages[0].Texts[${i++}].R[0].T`)[0];
     let median = jsonPath.query(pdfData, `$.formImage.Pages[0].Texts[${i++}].R[0].T`)[0];
     let tenth90th = decodeURIComponent(jsonPath.query(pdfData, `$.formImage.Pages[0].Texts[${i++}].R[0].T`)[0]);
-    console.log(`${label}: ${score}, Median: ${median}, 10th-90th P: ${tenth90th}\n`);
+    console.log(`${label}: ${score}, 50th P: ${median}, 10-90th P: ${tenth90th}`);
+    if ((i - 13) % 5 == 0) {
+      console.log('');
+    }
   };
 });
 
