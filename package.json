@@ -1,28 +1,40 @@
 {
-  "name": "hexaco",
-  "version": "1.0.0",
-  "description": "visualization for hexaco personality test results",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "npx npm-force-resolutions"
-  },
-  "keywords": [
-    "personality",
-    "psychology",
-    "visualization"
-  ],
-  "author": "Felipe Lima",
-  "license": "ISC",
+  "name": "hexaco-react",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Visualization tool for HEXACO personality test results",
   "dependencies": {
     "jsonpath": "^1.0.2",
-    "pdf2json": "^1.1.8"
-  },
-  "resolutions": {
-    "lodash": "4.17.15"
+    "pdfjs-dist": "^2.2.228",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.2.0"
   },
   "devDependencies": {
     "eslint": "^6.6.0",
     "eslint-plugin-react": "^7.16.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "author": "Felipe Lima",
+  "license": "MIT",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
