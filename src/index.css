@@ -12,6 +12,16 @@ code {
     monospace;
 }
 
-li {
-  text-align: left;
+.score-container {
+  height: 40px;
+  width: 60%;
+  border: 1px solid #ece5e5;
+  margin: 20px auto;
+  border-radius: 2px;
+}
+
+.score-amount {
+  height: 100%;
+  background-color: #adeaad;
+  border-radius: 2px;
 }

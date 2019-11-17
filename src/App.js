@@ -48,22 +48,24 @@ class App extends React.Component {
   render() {
     return (
       <div className="App" >
-        <header className="App-header">
-          <input
-            className="App-link"
-            type="file"
-            id="input"
-            onChange={(e) => this.handleFileChange(e.target.files)}
-          />
-          <ul>
-            {this.state.items.map(item => (
-              <li key={item.label}>
-                {item.label}, {item.score}, {item.median}, {item.tenth90th}
-              </li>
-            ))}
-          </ul>
+        <header>
+          HEXACO test results viz
         </header>
-      </div >
+        <input
+          className="App-link"
+          type="file"
+          id="input"
+          onChange={(e) => this.handleFileChange(e.target.files)}
+        />
+        {this.state.items.map(item => (
+          <div key={item.label}>
+            <p>{item.label}</p>
+            <div className="score-container">
+              <div className="score-amount" style={{ width: `${(parseFloat(item.score) / 5) * 100}%` }} />
+            </div>
+          </div>
+        ))}
+      </div>
     );
   }
 }
