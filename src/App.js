@@ -20,51 +20,64 @@ const pdfToText = (data) => {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { items: [] };
+    this.state = { traits: {} };
     this.handleFileChange = this.handleFileChange.bind(this);
   }
 
   handleFileChange(files) {
-    const reader = new FileReader();
+    const colors = ['score-green', 'score-red'];
     let component = this;
-    reader.onload = (e) => {
-      pdfToText(e.target.result).then((items) => {
-        let results = [];
-        let i = 0;
-        while (i < items.length) {
-          results.push({
-            label: items[i++],
-            score: items[i++],
-            median: items[i++],
-            tenth90th: items[i++]
+    for (let i = 0; i < files.length; i++) {
+      ((file, color) => {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          pdfToText(e.target.result).then((items) => {
+            let i = 0;
+            while (i < items.length) {
+              let label = items[i++].trim();
+              let values = [{
+                color: color,
+                score: items[i++],
+                median: items[i++],
+                tenth90th: items[i++]
+              }];
+              component.setState((state) => {
+                let newState = { traits: state.traits };
+                newState.traits[label] = newState.traits[label] ? newState.traits[label].concat(values) : values;
+                return newState;
+              });
+            }
           });
-        }
-        component.setState({ items: results });
-      });
-    };
-    reader.readAsArrayBuffer(files[0]);
+        };
+        reader.readAsArrayBuffer(file);
+      })(files[i], colors[i]);
+    }
   }
 
   render() {
     return (
       <div className="App" >
-        <header>
-          HEXACO test results viz
-        </header>
+        <h1>HEXACO test results viz</h1>
         <input
           className="App-link"
           type="file"
+          multiple={true}
+          accept=".pdf"
           id="input"
           onChange={(e) => this.handleFileChange(e.target.files)}
         />
-        {this.state.items.map(item => (
-          <div key={item.label}>
-            <p>{item.label}</p>
-            <div className="score-container">
-              <div className="score-amount" style={{ width: `${(parseFloat(item.score) / 5) * 100}%` }} />
+        {Object.getOwnPropertyNames(this.state.traits).map(trait =>
+          this.state.traits[trait].map((item) => (
+            <div key={trait + item.color}>
+              <p>{trait}</p>
+              <div className='score-container'>
+                <div className={'score-amount ' + item.color} style={{
+                  width: `${(parseFloat(item.score) / 5) * 100}%`
+                }} />
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     );
   }

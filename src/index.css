@@ -22,6 +22,13 @@ code {
 
 .score-amount {
   height: 100%;
-  background-color: #adeaad;
   border-radius: 2px;
+}
+
+.score-red {
+  background-color: #234da7;
+}
+
+.score-green {
+  background-color: #adeaad;
 }
