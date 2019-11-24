@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 
   handleFileChange(files) {
-    const colors = ['score-green', 'score-red'];
+    const colors = ['score-main', 'score-alt'];
     let component = this;
     for (let i = 0; i < files.length; i++) {
       ((file, color) => {
@@ -69,15 +69,20 @@ class App extends React.Component {
         {Object.getOwnPropertyNames(this.state.traits).map(trait =>
           this.state.traits[trait].map((item) => (
             <div key={trait + item.color}>
-              <p>{trait}</p>
+              {item.color === 'score-main' &&
+                <p>{trait}</p>
+              }
               <div className='score-container'>
+                <span className='score-num'>{item.score}</span>
                 <div className={'score-amount ' + item.color} style={{
                   width: `${(parseFloat(item.score) / 5) * 100}%`
-                }} />
+                }}>
+                </div>
               </div>
             </div>
           ))
-        )}
+        )
+        }
       </div>
     );
   }
